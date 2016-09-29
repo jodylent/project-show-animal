@@ -67,9 +67,13 @@ sed -i -e "s/^GITHUB_TOKEN=.*/GITHUB_TOKEN=REDACTED/g" ${SCRIPTDIR}/input_vars.s
 
 # Private Dotfiles (we're assuming my Brewfile is one), then source bash_profile
 mkdir -p ~/.dotfiles/private
-cp -r $PRIVATE_DOTFILE_PATH ~/.dotfiles/private
+cp -r ${PRIVATE_DOTFILE_PATH} ~/.dotfiles/private
 # Install them if we have anything special to do
-[ -n $PRIVATE_DOTFILE_CMD ] && $PRIVATE_DOTFILE_CMD
+if [ -z ${PRIVATE_DOTFILE_CMD+x} ]; then
+    echo "PRIVATE_DOTFILE_CMD is unset"
+else
+    ${PRIVATE_DOTFILE_CMD}
+fi
 source ~/.bash_profile
 
 # Pip is installed thanks to brew!
