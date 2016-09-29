@@ -34,6 +34,6 @@ GITHUB_TOKEN='DeleteOrWipeThisScriptWhenDone'
 export NEW_HOSTNAME='jlent-mbp'
 export PRIVATE_DOTFILE_PATH=~/Dropbox/scripts/private_dotfiles/personal
 export PRIVATE_DOTFILE_CMD="ln -sf ~/.dotfiles/private/alias.sh ~/.private_alias"
-export SUBLIME_SETTINGS_PATH=~/.dotfiles/Preferences.sublime-settings
+export SUBLIME_SETTINGS_PATH=~/.dotfiles/copy/Preferences.sublime-settings
 
 ########################################
