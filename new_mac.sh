@@ -77,9 +77,15 @@ fi
 source ~/.bash_profile
 
 # Pip is installed thanks to brew!
-pip install --user python -r ~/.dotfiles/script/pip-requirements.txt
-pip install --user python -r ~/.dotfiles/script/pip-requirements.txt --upgrade
+if [ -f ~/.dotfiles/script/pip-requirements.txt ]; then
+    pip install --user python -r ~/.dotfiles/script/pip-requirements.txt
+    pip install --user python -r ~/.dotfiles/script/pip-requirements.txt --upgrade
+fi
 
+if [ -f ~/.dotfiles/script/pip3-requirements.txt ]; then
+    pip3 install --user python -r ~/.dotfiles/script/pip-requirements.txt
+    pip3 install --user python -r ~/.dotfiles/script/pip-requirements.txt --upgrade
+fi
 
 # Mac settings
 sudo bash ~/.dotfiles/script/macos.sh
