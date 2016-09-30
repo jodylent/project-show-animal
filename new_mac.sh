@@ -77,7 +77,9 @@ fi
 source ~/.bash_profile
 
 # Pip is installed thanks to brew!
-sudo -H pip install -r ~/.dotfiles/script/pip-requirements.txt --ignore-installed six
+pip install --user python -r ~/.dotfiles/script/pip-requirements.txt
+pip install --user python -r ~/.dotfiles/script/pip-requirements.txt --upgrade
+
 
 # Mac settings
 sudo bash ~/.dotfiles/script/macos.sh
