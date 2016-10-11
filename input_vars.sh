@@ -33,7 +33,7 @@ GITHUB_TOKEN='DeleteOrWipeThisScriptWhenDone'
 # Subscript vars
 export NEW_HOSTNAME='jlent-mbp'
 export PRIVATE_DOTFILE_PATH=~/Dropbox/scripts/private_dotfiles/personal
-export PRIVATE_DOTFILE_CMD="ln -sf ~/.dotfiles/private/alias.sh ~/.private_alias"
+export PRIVATE_DOTFILE_CMD="echo 'Jody's private dotfiles in Dropbox have been symlinked'"
 export SUBLIME_SETTINGS_PATH=~/.dotfiles/copy/Preferences.sublime-settings
 
 ########################################
