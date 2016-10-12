@@ -59,7 +59,7 @@ function symlink_dirs() {
 }
 
 # PULL ENV VARIABLES from input_vars.sh
-source ${SCRIPTDIR}/input_vars.sh
+source ${SCRIPT_DIR}/input_vars.sh
 
 # Ask for the administrator password upfront
 sudo -v
@@ -78,7 +78,7 @@ bash /tmp/strap/bin/strap.sh
 
 # Wipe input_vars and strap/bin/strap.sh, since you know you'll leave them around anyway
 sed -i -e "s/^STRAP_GITHUB_TOKEN=.*/STRAP_GITHUB_TOKEN=REDACTED/g" /tmp/strap/bin/strap.sh
-sed -i -e "s/^GITHUB_TOKEN=.*/GITHUB_TOKEN=REDACTED/g" ${SCRIPTDIR}/input_vars.sh
+sed -i -e "s/^GITHUB_TOKEN=.*/GITHUB_TOKEN=REDACTED/g" ${SCRIPT_DIR}/input_vars.sh
 
 # Private Dotfiles (we're assuming my Brewfile is one), then source bash_profile
 mkdir -p ~/.dotfiles/private
