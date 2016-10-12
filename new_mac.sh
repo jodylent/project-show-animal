@@ -68,6 +68,10 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Install Prereqs: Xcode, brew, cask, pip via Strap
+# We remove ~/.dotfiles because Strap doesn't clone if it already exists, and why would it, on a new box?
+if [ -d ~/.dotfiles ]; then
+    rm -rf ~/.dotfiles
+fi
 mkdir -p /tmp/strap
 git clone https://github.com/mikemcquaid/strap /tmp/strap
 sed -i -e "s/^# STRAP_GIT_NAME=$/STRAP_GIT_NAME=\"${GIT_NAME}\"/g"                /tmp/strap/bin/strap.sh
