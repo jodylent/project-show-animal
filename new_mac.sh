@@ -113,7 +113,9 @@ sudo bash ~/.dotfiles/script/macos.sh
 sudo bash ~/.dotfiles/script/app_settings.sh
 
 # Git repos, based on list of `git remote get-url origin` values
-source ~/.dotfiles/script/refresh_repos.sh 2&>/dev/null
+echo "#### REPO SYNC BEGINNING #####"
+source ~/.dotfiles/script/refresh_repos.sh 2&>1
+echo "#### REPO SYNC COMPLETE #####"
 
 # Reboot if flagged, else tell user to reboot
 if [ "$1" = "--reboot" ]; then
