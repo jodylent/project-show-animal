@@ -84,6 +84,9 @@ bash /tmp/strap/bin/strap.sh
 sed -i -e "s/^STRAP_GITHUB_TOKEN=.*/STRAP_GITHUB_TOKEN=REDACTED/g" /tmp/strap/bin/strap.sh
 sed -i -e "s/^GITHUB_TOKEN=.*/GITHUB_TOKEN=REDACTED/g" ${SCRIPT_DIR}/input_vars.sh
 
+# Set dotfiles repo to SSH, NOT HTTPS
+git -C ~/.dotfiles remote set-url origin git@github.com:${GITHUB_USER}/dotfiles.git
+
 # Private Dotfiles (we're assuming my Brewfile is one), then source bash_profile
 mkdir -p ~/.dotfiles/private
 symlink_dirs ${PRIVATE_DOTFILE_PATH} ~/.dotfiles/private
