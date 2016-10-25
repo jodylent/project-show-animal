@@ -29,6 +29,7 @@ GIT_NAME='Jody Lent'
 GIT_EMAIL='jodylent@gmail.com'
 GITHUB_USER='jodylent'
 GITHUB_TOKEN='DeleteOrWipeThisScriptWhenDone'
+COMPANY_REPOMGMT_URL='gitbucket.yourcompany.com'
 
 # Subscript vars
 export NEW_HOSTNAME='jlent-mbp'

@@ -74,10 +74,17 @@ if [ -d ~/.dotfiles ]; then
 fi
 mkdir -p /tmp/strap
 git clone https://github.com/mikemcquaid/strap /tmp/strap
+# Strap customizations
 sed -i -e "s/^# STRAP_GIT_NAME=$/STRAP_GIT_NAME=\"${GIT_NAME}\"/g"                /tmp/strap/bin/strap.sh
 sed -i -e "s/^# STRAP_GIT_EMAIL=$/STRAP_GIT_EMAIL=\"${GIT_EMAIL}\"/g"             /tmp/strap/bin/strap.sh
 sed -i -e "s/^# STRAP_GITHUB_USER=$/STRAP_GITHUB_USER=\"${GITHUB_USER}\"/g"       /tmp/strap/bin/strap.sh
 sed -i -e "s/^# STRAP_GITHUB_TOKEN=$/STRAP_GITHUB_TOKEN=\"${GITHUB_TOKEN}\"/g"    /tmp/strap/bin/strap.sh
+sed -i -e "s/push.default simple/push.default current/g"    /tmp/strap/bin/strap.sh
+sed -i -e "s/DOTFILES_URL=\"https:\/\//DOTFILES_URL=\"ssh:\/\/git@/g"    /tmp/strap/bin/strap.sh
+sed -i -e "s/HOMEBREW_BREWFILE_URL=\"https:\/\//HOMEBREW_BREWFILE_URL=\"ssh:\/\/git@/g"    /tmp/strap/bin/strap.sh
+
+git config --global url.ssh://git@${COMPANY_REPOMGMT_URL}/.insteadOf https://${COMPANY_REPOMGMT_URL}/
+
 bash /tmp/strap/bin/strap.sh
 
 # Wipe input_vars and strap/bin/strap.sh, since you know you'll leave them around anyway
