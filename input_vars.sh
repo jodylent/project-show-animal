@@ -28,7 +28,7 @@
 export STRAP_GIT_NAME='Jody Lent'
 export STRAP_GIT_EMAIL='jodylent@gmail.com'
 export STRAP_GITHUB_USER='jodylent'
-export STRAP_GITHUB_TOKEN=REDACTED
+export STRAP_GITHUB_TOKEN='REDACTED'
 export COMPANY_REPOMGMT_URL='gitbucket.yourcompany.com'
 
 # Subscript vars
