@@ -74,6 +74,11 @@ if [ -d ~/.dotfiles ]; then
 fi
 mkdir -p /tmp/strap
 git clone https://github.com/mikemcquaid/strap /tmp/strap
+# Strap customizations
+sed -i -e "s/DOTFILES_URL=\"https:\/\//DOTFILES_URL=\"ssh:\/\/git@/g"    /tmp/strap/bin/strap.sh
+sed -i -e "s/HOMEBREW_BREWFILE_URL=\"https:\/\//HOMEBREW_BREWFILE_URL=\"ssh:\/\/git@/g"    /tmp/strap/bin/strap.sh
+git config --global url.ssh://git@${COMPANY_REPOMGMT_URL}/.insteadOf https://${COMPANY_REPOMGMT_URL}/
+# Run strap
 bash /tmp/strap/bin/strap.sh
 
 # Set dotfiles repo to SSH, NOT HTTPS
