@@ -74,15 +74,7 @@ if [ -d ~/.dotfiles ]; then
 fi
 mkdir -p /tmp/strap
 git clone https://github.com/mikemcquaid/strap /tmp/strap
-sed -i -e "s/^# STRAP_GIT_NAME=$/STRAP_GIT_NAME=\"${GIT_NAME}\"/g"                /tmp/strap/bin/strap.sh
-sed -i -e "s/^# STRAP_GIT_EMAIL=$/STRAP_GIT_EMAIL=\"${GIT_EMAIL}\"/g"             /tmp/strap/bin/strap.sh
-sed -i -e "s/^# STRAP_GITHUB_USER=$/STRAP_GITHUB_USER=\"${GITHUB_USER}\"/g"       /tmp/strap/bin/strap.sh
-sed -i -e "s/^# STRAP_GITHUB_TOKEN=$/STRAP_GITHUB_TOKEN=\"${GITHUB_TOKEN}\"/g"    /tmp/strap/bin/strap.sh
 bash /tmp/strap/bin/strap.sh
-
-# Wipe input_vars and strap/bin/strap.sh, since you know you'll leave them around anyway
-sed -i -e "s/^STRAP_GITHUB_TOKEN=.*/STRAP_GITHUB_TOKEN=REDACTED/g" /tmp/strap/bin/strap.sh
-sed -i -e "s/^GITHUB_TOKEN=.*/GITHUB_TOKEN=REDACTED/g" ${SCRIPT_DIR}/input_vars.sh
 
 # Set dotfiles repo to SSH, NOT HTTPS
 git -C ~/.dotfiles remote set-url origin git@github.com:${GITHUB_USER}/dotfiles.git

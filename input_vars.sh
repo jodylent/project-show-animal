@@ -25,10 +25,10 @@
 ########################################
 
 # Strap script vars
-GIT_NAME='Jody Lent'
-GIT_EMAIL='jodylent@gmail.com'
-GITHUB_USER='jodylent'
-GITHUB_TOKEN='DeleteOrWipeThisScriptWhenDone'
+export STRAP_GIT_NAME='Jody Lent'
+export STRAP_GIT_EMAIL='jodylent@gmail.com'
+export STRAP_GITHUB_USER='jodylent'
+export STRAP_GITHUB_TOKEN=REDACTED
 
 # Subscript vars
 export NEW_HOSTNAME='jlent-mbp'
