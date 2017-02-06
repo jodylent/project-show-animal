@@ -17,7 +17,7 @@
 #        "$i" 2>/dev/null
 #        break
 #      fi
-#    done 
+#    done
 #
 # If you have a Brewfile, Strap looks for it here:
 # -- "https://github.com/$STRAP_GITHUB_USER/homebrew-brewfile/Brewfile"
@@ -35,6 +35,6 @@ export COMPANY_REPOMGMT_URL='gitbucket.yourcompany.com'
 export NEW_HOSTNAME='jlent-mbp'
 export PRIVATE_DOTFILE_PATH=~/Dropbox/scripts/private_dotfiles/personal
 export PRIVATE_DOTFILE_CMD="echo 'Jody's private dotfiles in Dropbox have been symlinked'"
-export SUBLIME_SETTINGS_PATH=~/.dotfiles/copy/Preferences.sublime-settings
+export SUBLIME_SETTINGS_PATH=~/Dropbox/scripts/sync/sublime
 
 ########################################
