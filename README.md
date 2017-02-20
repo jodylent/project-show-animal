@@ -5,6 +5,8 @@ We want our Macs to be tools--fungible, flexible and easily rebuilt--and this is
 
 ## Directions:
 
+Install XCode--the native Mac git install requires it.
+
 Clone this repo:
 
 	git clone https://github.com/jodylent/project-show-animal.git
@@ -13,24 +15,26 @@ Set up any cloud storage used by your dotfiles repo(s). Mine uses Dropbox, so I 
 
 Modify input_vars.sh
 
-* Set your Git user info + token
-* Set the path to your private dotfiles (~/Dropbox, a private repo, what have you)
-* Set the command(s) to run to setup those dotfiles
-* We automatically source ~/.bash_profile AFTER all dotfiles are pulled down
+* Set your Git user info
+* Set a new hostname
 
 Run new_mac.sh
 
 	bash /path/to/project-show-animal/new_mac.sh
 
 ## What it does:
-* Clones and runs Strap (https://github.com/MikeMcQuaid/strap):
+* Secures your ssh key with `chmod 600 ~/.ssh/id_rsa` if it exists.
+* Clones and runs [Strap](https://github.com/MikeMcQuaid/strap):
     * Installs Homebrew
     * Downloads/accepts license/installs Xcode Command Line Tools
-    * Downloads dotfiles from `https://github.com/$STRAP_GITHUB_USER/dotfiles` to ~/.dotfiles
-	    * Runs any scripts in `~/.dotfiles/setup` (I symlink in my dotfiles)
-    * Downloads Brewfile from `https://github.com/$STRAP_GITHUB_USER/homebrew-brewfile` and runs `brew bundle --global`
-    * Does other awesome stuff. See https://github.com/MikeMcQuaid/strap/blob/master/README.md
-* Copies private dotfiles from $PRIVATE\_DOTFILE\_PATH (Dropbox, private repo, etc.s)
+    * Downloads `https://github.com/$STRAP_GITHUB_USER/dotfiles` to `~/.dotfiles`
+	    * Runs any scripts in `~/.dotfiles/setup`
+	    * (I [symlink in my dotfiles](https://github.com/jodylent/dotfiles/blob/master/script/setup/install.sh))
+    * Downloads Brewfile from `https://github.com/$STRAP_GITHUB_USER/homebrew-brewfile`
+    * Runs `brew bundle --global`
+    * Does other awesome stuff. See [the README](https://github.com/MikeMcQuaid/strap/blob/master/README.md)
+* Sets git config for your company URL to use SSH
+* Sources ~/.bash_profile
 * Installs pip-requirements from `~/.dotfiles/script/pip-requirements.txt`
 * Installs macOS settings from `~/.dotfiles/script/macos.sh`
 * Installs application settings from `~/.dotfiles/script/app_settings.sh` (someday, may use https://github.com/lra/mackup)
@@ -40,8 +44,8 @@ Run new_mac.sh
 ## Things that have to be done by hand post-run:
 * Chrome Extensions: any configuration
 * Pip/gem install requirements for repos
-* Remap Capslock to Ctrl
 * System Preferences > Internet Accounts
+* Installing anything **without** a Homebrew cask or formula
 
 ## Related repos
 * https://github.com/MikeMcQuaid/strap
