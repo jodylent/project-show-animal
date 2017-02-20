@@ -46,6 +46,15 @@ Run new_mac.sh
 * Pip/gem install requirements for repos
 * System Preferences > Internet Accounts
 * Installing anything **without** a Homebrew cask or formula
+* Allow yourself unlimited cosmic power:
+
+```
+sudo su -
+visudo -f /etc/sudoers
+
+# Sudo no password -- USE AT YOUR OWN RISK
+USERNAME ALL=(ALL) NOPASSWD: ALL
+```
 
 ## Related repos
 * https://github.com/MikeMcQuaid/strap
