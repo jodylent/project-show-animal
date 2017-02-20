@@ -5,7 +5,7 @@
 
 ### Directions:
 # git clone https://github.com/jodylent/project-show-animal.git
-# Modify input_vars.sh (set your Git user info + token)
+# Modify input_vars.sh (set your Git user info)
 # Run new_mac.sh
 
 ### Actions:
@@ -14,16 +14,13 @@
 # -- Downloads/accepts license/installs Xcode Command Line Tools
 # -- Downloads dotfiles from https://github.com/$STRAP_GITHUB_USER/dotfiles and installs
 # -- Downloads Brewfile from https://github.com/$STRAP_GITHUB_USER/homebrew-brewfile and runs `brew bundle --global`
-# -- Does other awesome stuff. See https://github.com/MikeMcQuaid/strap/blob/master/README.md
-# Copies private dotfiles from $PRIVATE_DOTFILE_PATH (Dropbox, private repo, etc.s)
-# Installs pip-requirements
-# Installs macOS settings
-# Installs application settings (someday, may use https://github.com/lra/mackup)
+# -- Does other awesome stuff. See https://github.com/MikeMcQuaid/strap/blob/master/README.md# Installs pip-requirements
+# Installs macOS settings from ~/.dotfiles/script
+# Installs application settings from ~/.dotfiles/script (someday, may use https://github.com/lra/mackup)
 # Syncs git repos
 # Reboots if run with `--reboot`
 
 ### Things that have to be done by hand post-run:
-# Remap Capslock to Ctrl
 # Chrome Extensions:
 # -- Stash plugin (https://chrome.google.com/webstore/detail/stash-extension/kpgdinlfgnkbfkmffilkgmeahphehegk)
 # System Preferences > Internet Accounts
@@ -33,32 +30,11 @@
 # -- Twitter
 # -- etc.
 # Pip/gem install requirements for repos
-# VERACRYPT issue https://github.com/caskroom/homebrew-cask/issues/20726
-# -- Allow `brew bundle` to run (or just `brew cask install osxfuse`) and then:
-# ---- run `open /usr/local/Caskroom/osxfuse/*/Install\ OSXFUSE*.pkg`
-# ---- install with MacFUSE compatibility layer
-# ---- run `brew cask install veracrypt`
 
 ########################################
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-function symlink_dirs() {
-    SOURCE_DIR=$1
-    TARGET_DIR=$2
-    FILES_TO_LINK=`ls ${SOURCE_DIR}`
-    for REAL_FILE in ${FILES_TO_LINK}; do
-        # Get name, not name.sh
-        filename="${REAL_FILE%.*}"
-        echo "linking  ${SOURCE_DIR}/${REAL_FILE} to ${TARGET_DIR}/.${filename}"
-        # Move existing to backup
-        [ -f ~/.${filename} ] && mv ~/.${filename} ~/.dotfiles/backup/${filename}
-        # Link it
-        ln -sf ${SOURCE_DIR}/${REAL_FILE} ${TARGET_DIR}/.${filename}
-    done
-}
-
 # PULL ENV VARIABLES from input_vars.sh
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source ${SCRIPT_DIR}/input_vars.sh
 
 # Ask for the administrator password upfront
@@ -94,15 +70,7 @@ bash /tmp/strap/bin/strap.sh
 # Set dotfiles repo to SSH, NOT HTTPS
 git -C ~/.dotfiles remote set-url origin git@github.com:${GITHUB_USER}/dotfiles.git
 
-# Private Dotfiles (we're assuming my Brewfile is one), then source bash_profile
-mkdir -p ~/.dotfiles/private
-symlink_dirs ${PRIVATE_DOTFILE_PATH} ~/.dotfiles/private
-# Install them if we have anything special to do
-if [ -z ${PRIVATE_DOTFILE_CMD+x} ]; then
-    echo "PRIVATE_DOTFILE_CMD is unset"
-else
-    ${PRIVATE_DOTFILE_CMD}
-fi
+# Private Dotfiles should be installed by Strap if dotfiles/script/setup/install.sh exists
 source ~/.bash_profile
 
 # Pip is installed thanks to brew!
@@ -117,15 +85,21 @@ if [ -f ~/.dotfiles/script/pip3-requirements.txt ]; then
 fi
 
 # Mac settings
-sudo bash ~/.dotfiles/script/macos.sh
+if [ -f ~/.dotfiles/script/macos.sh ]; then
+    sudo bash ~/.dotfiles/script/macos.sh
+fi
 
 # App settings
-sudo bash ~/.dotfiles/script/app_settings.sh
+if [ -f ~/.dotfiles/script/app_settings.sh ]; then
+    sudo bash ~/.dotfiles/script/app_settings.sh
+fi
 
 # Git repos, based on list of `git remote get-url origin` values
-echo "#### REPO SYNC BEGINNING #####"
-source ~/.dotfiles/script/refresh_repos.sh 2&>1
-echo "#### REPO SYNC COMPLETE #####"
+if [ -f ~/.dotfiles/script/refresh_repos.sh ]; then
+    echo "#### REPO SYNC BEGINNING #####"
+    source ~/.dotfiles/script/refresh_repos.sh 2&>1
+    echo "#### REPO SYNC COMPLETE #####"
+fi
 
 # Reboot if flagged, else tell user to reboot
 if [ "$1" = "--reboot" ]; then

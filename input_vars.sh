@@ -28,13 +28,10 @@
 export STRAP_GIT_NAME='Jody Lent'
 export STRAP_GIT_EMAIL='jodylent@gmail.com'
 export STRAP_GITHUB_USER='jodylent'
-export STRAP_GITHUB_TOKEN='REDACTED'
+export STRAP_GITHUB_TOKEN='I copy my ssh key and use ssh, not https'
 export COMPANY_REPOMGMT_URL='gitbucket.yourcompany.com'
 
 # Subscript vars
 export NEW_HOSTNAME='jlent-mbp'
-export PRIVATE_DOTFILE_PATH=~/Dropbox/scripts/private_dotfiles/personal
-export PRIVATE_DOTFILE_CMD="echo 'Jody's private dotfiles in Dropbox have been symlinked'"
-export SUBLIME_SETTINGS_PATH=~/Dropbox/scripts/sync/sublime
 
 ########################################
