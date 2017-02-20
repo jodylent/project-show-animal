@@ -42,6 +42,7 @@ Run new_mac.sh
 * Reboots if run with `--reboot`
 
 ## Things that have to be done by hand post-run:
+* AWS CLI & Boto config: ~/.aws/{config,credentials}
 * Chrome Extensions: any configuration
 * Pip/gem install requirements for repos
 * System Preferences > Internet Accounts
