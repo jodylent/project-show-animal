@@ -24,7 +24,7 @@
 
 ### Things that have to be done by hand post-run:
 # Remap Capslock to Ctrl
-# Chrome Extensions: 
+# Chrome Extensions:
 # -- Stash plugin (https://chrome.google.com/webstore/detail/stash-extension/kpgdinlfgnkbfkmffilkgmeahphehegk)
 # System Preferences > Internet Accounts
 # -- Calendars
@@ -68,17 +68,26 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Install Prereqs: Xcode, brew, cask, pip via Strap
+# Chmod ssh key if it exists before we try to clone anything
+if [ -f ~/.ssh/id_rsa ] ; then
+    chmod 600 ~/.ssh/id_rsa
+fi
+
 # We remove ~/.dotfiles because Strap doesn't clone if it already exists, and why would it, on a new box?
 if [ -d ~/.dotfiles ]; then
     rm -rf ~/.dotfiles
 fi
 mkdir -p /tmp/strap
+
+
 git clone https://github.com/mikemcquaid/strap /tmp/strap
+
 # Strap customizations
 git config --global push.default current # I like current > simple
 git config --global url.ssh://git@${COMPANY_REPOMGMT_URL}/.insteadOf https://${COMPANY_REPOMGMT_URL}/
 sed -i -e "s/DOTFILES_URL=\"https:\/\//DOTFILES_URL=\"ssh:\/\/git@/g"                   /tmp/strap/bin/strap.sh
 sed -i -e "s/HOMEBREW_BREWFILE_URL=\"https:\/\//HOMEBREW_BREWFILE_URL=\"ssh:\/\/git@/g" /tmp/strap/bin/strap.sh
+
 # Run strap
 bash /tmp/strap/bin/strap.sh
 
