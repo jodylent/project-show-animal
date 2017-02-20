@@ -9,6 +9,8 @@ Clone this repo:
 
 	git clone https://github.com/jodylent/project-show-animal.git
 
+Set up any cloud storage used by your dotfiles repo(s). Mine uses Dropbox, so I install/configure it before running.
+
 Modify input_vars.sh
 
 * Set your Git user info + token
@@ -36,15 +38,10 @@ Run new_mac.sh
 * Reboots if run with `--reboot`
 
 ## Things that have to be done by hand post-run:
-* Chrome Extensions: 
+* Chrome Extensions: any configuration
 * Pip/gem install requirements for repos
 * Remap Capslock to Ctrl
 * System Preferences > Internet Accounts
-* VERACRYPT issue (https://github.com/caskroom/homebrew-cask/issues/20726)
-    * Allow `brew bundle` to run (or just `brew cask install osxfuse`) and then:
-    * Run `open /usr/local/Caskroom/osxfuse/*/Install\ OSXFUSE*.pkg`
-    * Install with MacFUSE compatibility layer
-    * Run `brew cask install veracrypt`
 
 ## Related repos
 * https://github.com/MikeMcQuaid/strap
