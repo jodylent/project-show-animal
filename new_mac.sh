@@ -86,18 +86,18 @@ fi
 
 # Mac settings
 if [ -f ~/.dotfiles/script/macos.sh ]; then
-    sudo bash ~/.dotfiles/script/macos.sh
+    source ~/.dotfiles/script/macos.sh
 fi
 
 # App settings
 if [ -f ~/.dotfiles/script/app_settings.sh ]; then
-    sudo bash ~/.dotfiles/script/app_settings.sh
+    source ~/.dotfiles/script/app_settings.sh
 fi
 
 # Git repos, based on list of `git remote get-url origin` values
 if [ -f ~/.dotfiles/script/refresh_repos.sh ]; then
     echo "#### REPO SYNC BEGINNING #####"
-    source ~/.dotfiles/script/refresh_repos.sh 2&>1
+    source ~/.dotfiles/script/refresh_repos.sh 2>&1
     echo "#### REPO SYNC COMPLETE #####"
 fi
 
