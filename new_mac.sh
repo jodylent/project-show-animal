@@ -75,11 +75,13 @@ source ~/.bash_profile
 
 # Pip is installed thanks to brew!
 if [ -f ~/.dotfiles/script/pip-requirements.txt ]; then
+    pip install --upgrade pip
     pip install --user python -r ~/.dotfiles/script/pip-requirements.txt
     pip install --user python -r ~/.dotfiles/script/pip-requirements.txt --upgrade
 fi
 
 if [ -f ~/.dotfiles/script/pip3-requirements.txt ]; then
+    pip3 install --upgrade pip3
     pip3 install --user python -r ~/.dotfiles/script/pip-requirements.txt
     pip3 install --user python -r ~/.dotfiles/script/pip-requirements.txt --upgrade
 fi
@@ -104,6 +106,6 @@ fi
 # Reboot if flagged, else tell user to reboot
 if [ "$1" = "--reboot" ]; then
     sudo reboot
-else;
+else
     echo "Done. Note that some of these changes require a logout/restart to take effect."
 fi
