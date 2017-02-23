@@ -63,3 +63,4 @@ USERNAME ALL=(ALL) NOPASSWD: ALL
 * https://github.com/jodylent/homebrew-brewfile
 * https://github.com/mathiasbynens/dotfiles/blob/master/.macos
 * https://github.com/lra/mackup
+* https://github.com/tiiiecherle/osx_install_config
