@@ -53,6 +53,11 @@ fi
 if [ -d ~/.dotfiles ]; then
     rm -rf ~/.dotfiles
 fi
+
+# Ditto for strap dir; mildly improves idempotency
+if [ -d /tmp/strap ]; then
+    rm -rf /tmp/strap
+fi
 mkdir -p /tmp/strap
 
 
