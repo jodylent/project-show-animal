@@ -60,54 +60,19 @@ if [ -d /tmp/strap ]; then
 fi
 mkdir -p /tmp/strap
 
-
+# Clone strap
 git clone https://github.com/mikemcquaid/strap /tmp/strap
 
-# Strap customizations
-git config --global push.default current # I like current > simple
-git config --global url.ssh://git@${COMPANY_REPOMGMT_URL}/.insteadOf https://${COMPANY_REPOMGMT_URL}/
+# Strap customizations -- I do  not use the GitHub tokenm, I copy in my ssh keys pre-run
 sed -i -e "s/DOTFILES_URL=\"https:\/\//DOTFILES_URL=\"ssh:\/\/git@/g"                   /tmp/strap/bin/strap.sh
 sed -i -e "s/HOMEBREW_BREWFILE_URL=\"https:\/\//HOMEBREW_BREWFILE_URL=\"ssh:\/\/git@/g" /tmp/strap/bin/strap.sh
 
 # Run strap
 bash /tmp/strap/bin/strap.sh
 
-# Set dotfiles repo to SSH, NOT HTTPS
-git -C ~/.dotfiles remote set-url origin git@github.com:${GITHUB_USER}/dotfiles.git
-
 # Private Dotfiles should be installed by Strap if dotfiles/script/setup/install.sh exists
 if [ -f ~/.bash_profile ]; then
     source ~/.bash_profile
-fi
-
-# Pip is installed thanks to brew!
-if [ -f ~/.dotfiles/script/pip-requirements.txt ]; then
-    pip install --upgrade pip
-    pip install --user python -r ~/.dotfiles/script/pip-requirements.txt
-    pip install --user python -r ~/.dotfiles/script/pip-requirements.txt --upgrade
-fi
-
-if [ -f ~/.dotfiles/script/pip3-requirements.txt ]; then
-    pip3 install --upgrade pip3
-    pip3 install --user python -r ~/.dotfiles/script/pip-requirements.txt
-    pip3 install --user python -r ~/.dotfiles/script/pip-requirements.txt --upgrade
-fi
-
-# Mac settings
-if [ -f ~/.dotfiles/script/macos.sh ]; then
-    source ~/.dotfiles/script/macos.sh
-fi
-
-# App settings
-if [ -f ~/.dotfiles/script/app_settings.sh ]; then
-    source ~/.dotfiles/script/app_settings.sh
-fi
-
-# Git repos, based on list of `git remote get-url origin` values
-if [ -f ~/.dotfiles/script/refresh_repos.sh ]; then
-    echo "#### REPO SYNC BEGINNING #####"
-    source ~/.dotfiles/script/refresh_repos.sh 2>&1
-    echo "#### REPO SYNC COMPLETE #####"
 fi
 
 # Reboot if flagged, else tell user to reboot
