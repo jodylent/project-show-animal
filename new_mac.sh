@@ -68,7 +68,7 @@ sed -i -e "s/HOMEBREW_BREWFILE_URL=\"https:\/\//HOMEBREW_BREWFILE_URL=\"ssh:\/\/
 bash /tmp/strap/bin/strap.sh
 
 # Set dotfiles repo to SSH, NOT HTTPS
-git -C ~/.dotfiles remote set-url origin git@github.com:${GITHUB_USER}/dotfiles.git
+git -C ~/.dotfiles remote set-url origin git@github.com:${STRAP_GITHUB_USER}/dotfiles.git
 
 # Private Dotfiles should be installed by Strap if dotfiles/script/setup/install.sh exists
 source ~/.bash_profile
