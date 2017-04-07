@@ -76,7 +76,9 @@ bash /tmp/strap/bin/strap.sh
 git -C ~/.dotfiles remote set-url origin git@github.com:${GITHUB_USER}/dotfiles.git
 
 # Private Dotfiles should be installed by Strap if dotfiles/script/setup/install.sh exists
-source ~/.bash_profile
+if [ -f ~/.bash_profile ]; then
+    source ~/.bash_profile
+fi
 
 # Pip is installed thanks to brew!
 if [ -f ~/.dotfiles/script/pip-requirements.txt ]; then
