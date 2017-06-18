@@ -5,22 +5,28 @@ We want our Macs to be tools--fungible, flexible and easily rebuilt--and this is
 
 ## Directions:
 
-Install XCode--the native Mac git install requires it.
+**PREREQUISITES**
 
-Clone this repo:
+* Install XCode Command Line Tools
+	* (the native Mac git install requires it)
+	* THERE HAS GOT TO BE A BETTER WAY TO DO THIS
+* Clone this repo:
 
-	git clone https://github.com/jodylent/project-show-animal.git
+		git clone https://github.com/jodylent/project-show-animal.git
 
-Set up any cloud storage used by your dotfiles repo(s). Mine uses Dropbox, so I install/configure it before running.
+* Set up any cloud storage used by your dotfiles repo(s).
+* Sign into iCloud (if you use [mas](https://github.com/mas-cli/mas) to automate Mac App Store)
+* Copy down/up any SSH keys you use for repos
 
-Modify input_vars.sh
+**USAGE**
 
-* Set your Git user info
-* Set a new hostname
+* Modify input_vars.sh
+	* Set your Git user info
+	* Set a new hostname
 
-Run new_mac.sh
+* Run new_mac.sh
 
-	bash /path/to/project-show-animal/new_mac.sh
+		bash /path/to/project-show-animal/new_mac.sh
 
 ## What it does:
 * Secures your ssh key with `chmod 600 ~/.ssh/id_rsa` if it exists.
