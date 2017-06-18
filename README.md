@@ -62,6 +62,9 @@ visudo -f /etc/sudoers
 # Sudo no password -- USE AT YOUR OWN RISK
 USERNAME ALL=(ALL) NOPASSWD: ALL
 ```
+* Open SublimeText > Install Packages to refresh in symlinked configs
+* Disable "Smart Quotes" in System Preferences > Keyboard > Text > "Use Smart Quotes and Dashes"
+
 
 ## Related repos
 * https://github.com/MikeMcQuaid/strap
