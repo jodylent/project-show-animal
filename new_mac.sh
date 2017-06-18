@@ -37,6 +37,25 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source ${SCRIPT_DIR}/input_vars.sh
 
+INPUTS_PROMPT="
+The following inputs have been set
+
+STRAP_GIT_NAME        :  ${STRAP_GIT_NAME}
+STRAP_GIT_EMAIL       :  ${STRAP_GIT_EMAIL}
+STRAP_GITHUB_USER     :  ${STRAP_GITHUB_USER}
+STRAP_GITHUB_TOKEN    :  ${STRAP_GITHUB_TOKEN}
+COMPANY_REPOMGMT_URL  :  ${COMPANY_REPOMGMT_URL}
+NEW_HOSTNAME          :  ${NEW_HOSTNAME}
+
+Is this correct? [y/N] "
+read -r -p "$INPUTS_PROMPT" response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
+then
+    echo "All right, thumbs up let's do this!"
+else
+    echo "ABORTING..."
+    exit 1
+fi
 # Ask for the administrator password upfront
 sudo -v
 
